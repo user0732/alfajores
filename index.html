@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabla de degustación de Alfajores - Dependientes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:      #ded0af;
+    --paper-2:    #cebd97;
+    --ink:        #2b1810;
+    --ink-soft:   #5a4636;
+    --copper:     #b3702f;
+    --copper-dk:  #7a4a1e;
+    --rose:       #c2727a;
+    --sello:      #3f6b4c;
+    --card:       #f2e9d4;
+    --line:       rgba(43,24,16,0.16);
+    --shadow:     rgba(43,24,16,0.25);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 85%, rgba(0,0,0,0.06), transparent 55%),
+      repeating-linear-gradient(0deg, rgba(43,24,16,0.025) 0px, rgba(43,24,16,0.025) 1px, transparent 1px, transparent 3px);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding:48px 20px 80px;
+    min-height:100vh;
+  }
+
+  .wrap{ max-width:1080px; margin:0 auto; }
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+    padding-bottom:22px;
+    margin-bottom:34px;
+    border-bottom:3px double var(--ink);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--copper-dk);
+    font-weight:600;
+    margin:0 0 8px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(28px, 4.4vw, 46px);
+    line-height:1.04;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  h1 em{ font-style:italic; font-weight:500; color:var(--copper-dk); }
+  .subtitle{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    max-width:420px;
+    margin:10px 0 0;
+    line-height:1.5;
+  }
+  .stamp-badge{
+    flex-shrink:0;
+    width:112px; height:112px;
+    border-radius:50%;
+    border:2.5px dashed var(--copper-dk);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    transform:rotate(-6deg);
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--copper-dk);
+    text-align:center;
+    line-height:1.15;
+  }
+  
+  
+  
+  .stamp-badge b{ font-size:26px; display:block; }
+  .stamp-badge span{ font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; }
+
+  /* ---------- Stat cards ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:44px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px 18px;
+    box-shadow:2px 3px 0 var(--shadow);
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .stat .value{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:28px;
+    color:var(--copper-dk);
+  }
+  .stat .value small{ font-size:14px; font-weight:500; color:var(--ink-soft); }
+
+  /* ---------- Section titles ---------- */
+  .section-title{
+    display:flex; align-items:baseline; gap:10px;
+    margin:0 0 16px;
+  }
+  .section-title .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--copper);
+  }
+  .section-title h2{
+    font-family:'Fraunces', serif;
+    font-weight:600; font-size:20px; margin:0;
+  }
+
+  /* ---------- Chart ---------- */
+  .chart-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:22px 24px 10px;
+    margin-bottom:46px;
+    box-shadow:3px 4px 0 var(--shadow);
+  }
+  #barchartComercial, #barchartArtesanal{ width:100%; display:block; overflow:visible; }
+  .bar-row .bar-name{ font-family:'Inter'; font-size:12.5px; font-weight:600; fill:var(--ink); }
+  .bar-row .bar-score{ font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; }
+  .bar-track{ fill:rgba(43,24,16,0.08); }
+  .axis-line{ stroke:var(--line); stroke-width:1; }
+  .axis-label{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; fill:var(--ink-soft); }
+
+  .legend{
+    display:flex; flex-wrap:wrap; gap:18px;
+    padding:14px 2px 16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .legend .dot{ display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+
+  /* ---------- Table ---------- */
+  .table-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:3px 4px 0 var(--shadow);
+    overflow:hidden;
+  }
+  table{ width:100%; border-collapse:collapse; }
+  thead th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--card);
+    background:var(--ink);
+    padding:13px 16px;
+    font-weight:600;
+  }
+  thead th:first-child{ border-top-left-radius:0; }
+  tbody tr{ border-bottom:1px dashed var(--line); }
+  tbody tr:last-child{ border-bottom:none; }
+  tbody tr:hover{ background:rgba(179,112,47,0.07); }
+  tbody td{ padding:15px 16px; font-size:13.5px; vertical-align:top; line-height:1.5; }
+  td.col-alfajor{ font-family:'Fraunces', serif; font-weight:600; font-size:15.5px; width:16%; white-space:nowrap; }
+  td.col-desc{ color:var(--ink-soft); width:28%; }
+  td.col-notas{ color:var(--ink-soft); font-style:italic; width:26%; }
+  td.col-puntaje{ width:10%; }
+  td.col-tipo{ width:10%; }
+  .tipo-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .tipo-tag.artesanal{ color:var(--sello); border-color:var(--sello); }
+  .tipo-tag.comercial{ color:var(--copper-dk); border-color:var(--copper-dk); }
+
+  /* ---------- Lista de espera ---------- */
+  .espera-empty{ padding:22px 16px; color:var(--ink-soft); font-style:italic; font-size:13.5px; }
+  td.col-venc{ font-family:'IBM Plex Mono', monospace; font-weight:600; white-space:nowrap; }
+  td.col-quedan{ white-space:nowrap; }
+  .venc-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px; letter-spacing:.04em; text-transform:uppercase;
+    padding:3px 9px; border-radius:20px;
+    border:1px solid var(--sello); color:var(--sello);
+  }
+  .venc-tag.pronto{ border-color:var(--copper); color:var(--copper-dk); }
+  .venc-tag.urgente{ border-color:var(--rose); color:var(--rose); }
+  .venc-tag.vencido{ border-color:var(--ink); color:var(--card); background:var(--ink); }
+
+  .sello{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:50%;
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13.5px;
+    color:#fff;
+    box-shadow:1px 2px 0 var(--shadow);
+  }
+
+  /* ---------- Galería ---------- */
+  .gallery-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px 22px 24px;
+    margin-bottom:46px;
+    box-shadow:3px 4px 0 var(--shadow);
+  }
+  .gallery-toolbar{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:10px;
+    margin-bottom:18px;
+  }
+  .gallery-status{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .live-dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--sello);
+    box-shadow:0 0 0 0 rgba(63,107,76,0.6);
+    animation:pulse 2s infinite;
+  }
+  .live-dot.err{ background:var(--rose); animation:none; }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(63,107,76,0.5); }
+    70%{ box-shadow:0 0 0 7px rgba(63,107,76,0); }
+    100%{ box-shadow:0 0 0 0 rgba(63,107,76,0); }
+  }
+  .gallery-refresh{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--card);
+    background:var(--ink);
+    border:none;
+    border-radius:20px;
+    padding:8px 16px;
+    cursor:pointer;
+  }
+  .gallery-refresh:hover{ background:var(--copper-dk); }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:16px;
+  }
+  .gallery-item{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:1px 2px 0 var(--shadow);
+    transform:rotate(0deg);
+    transition:transform .15s ease;
+  }
+  .gallery-item:nth-child(3n+1){ transform:rotate(-1.2deg); }
+  .gallery-item:nth-child(3n+2){ transform:rotate(0.8deg); }
+  .gallery-item:nth-child(3n){ transform:rotate(-0.4deg); }
+  .gallery-item:hover{ transform:rotate(0deg) scale(1.03); }
+  .gallery-item .img-wrap{
+    width:100%; aspect-ratio:1/1;
+    background:repeating-linear-gradient(45deg, rgba(43,24,16,0.05) 0 10px, rgba(43,24,16,0.02) 10px 20px);
+    overflow:hidden;
+  }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
+
+  /* ---------- Modal / lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:1000;
+    display:none;
+    align-items:center; justify-content:center;
+    padding:32px;
+    background:rgba(20,11,7,0.86);
+    backdrop-filter:blur(2px);
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox-inner{
+    position:relative;
+    max-width:min(920px, 92vw);
+    max-height:88vh;
+    display:flex; flex-direction:column;
+    align-items:center;
+  }
+  .lightbox-inner img{
+    max-width:100%;
+    max-height:76vh;
+    object-fit:contain;
+    border-radius:8px;
+    box-shadow:0 12px 0 rgba(0,0,0,0.25), 0 20px 40px rgba(0,0,0,0.4);
+    background:#fff;
+  }
+  .lightbox-cap{
+    margin-top:16px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:17px;
+    color:#f2e9d4;
+    text-align:center;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:-46px; right:-6px;
+    width:38px; height:38px;
+    border-radius:50%;
+    border:2px solid #f2e9d4;
+    background:transparent;
+    color:#f2e9d4;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .lightbox-close:hover{ background:#f2e9d4; color:var(--ink); }
+  .lightbox-nav{
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:44px; height:44px;
+    border-radius:50%;
+    border:2px solid rgba(242,233,212,0.7);
+    background:rgba(0,0,0,0.25);
+    color:#f2e9d4;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:20px;
+    cursor:pointer;
+  }
+  .lightbox-nav:hover{ background:rgba(242,233,212,0.18); }
+  .lightbox-nav.prev{ left:-58px; }
+  .lightbox-nav.next{ right:-58px; }
+  @media (max-width: 720px){
+    .lightbox-nav.prev{ left:4px; }
+    .lightbox-nav.next{ right:4px; }
+    .lightbox-close{ top:-42px; right:0; }
+  }
+  .gallery-item .cap{
+    padding:9px 11px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:13px;
+    text-align:center;
+    border-top:1px dashed var(--line);
+  }
+  .gallery-empty, .gallery-error{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding:18px 4px;
+  }
+  .gallery-error{ color:var(--rose); }
+  .gallery-config-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ink-soft);
+    margin-top:14px;
+    line-height:1.6;
+    border-top:1px dashed var(--line);
+    padding-top:12px;
+  }
+  .gallery-config-note code{
+    background:rgba(43,24,16,0.08);
+    padding:1px 5px;
+    border-radius:4px;
+  }
+
+  footer{
+    margin-top:30px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  
+    footer strong {
+  font-weight: 700;
+}
+
+  @media (max-width: 720px){
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stats .stat:last-child{ grid-column:1 / -1; }
+    thead{ display:none; }
+    table, tbody, tr, td{ display:block; width:100% !important; }
+    tbody tr{ padding:14px 16px; border-bottom:1px dashed var(--line); }
+    tbody td{ padding:4px 0; }
+    td.col-alfajor{ font-size:17px; }
+    td.col-alfajor::after{ content:""; }
+    td.col-desc::before{ content:"Descripción: "; font-family:'IBM Plex Mono', monospace; font-size:9.5px; text-transform:uppercase; color:var(--copper-dk); display:block; margin-bottom:2px; }
+    td.col-notas::before{ content:"Catadores: "; font-family:'IBM Plex Mono', monospace; font-size:9.5px; text-transform:uppercase; color:var(--copper-dk); font-style: normal; display:block; margin-bottom:2px; }
+    td.col-tipo::before{ content:"Tipo: "; font-family:'IBM Plex Mono', monospace; font-size:9.5px; text-transform:uppercase; color:var(--copper-dk); display:block; margin-bottom:2px; }
+  }
+  
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="eyebrow">Ficha de cata &middot; AlfajoresDependientes</p>
+      <h1>Tabla de degustación<br>de <em>Alfajores</em></h1>
+      <p class="subtitle">Puntajes promedio, descripción comercial y notas crudas de los catadores del bunker.</p>
+    </div>
+    <div class="stamp-badge">
+      <b id="stampAvg">-</b>
+      <span>promedio<br>general</span>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="label">Alfajores catados</div>
+      <div class="value" id="statCount">0</div>
+    </div>
+    <div class="stat">
+      <div class="label">Mejor puntaje comercial</div>
+      <div class="value" id="statBest">-</div>
+    </div>
+    <div class="stat">
+      <div class="label">Mejor puntaje artesanal</div>
+      <div class="value" id="statBestArtesanal">-</div>
+    </div>
+    <div class="stat">
+      <div class="label">Peor puntaje</div>
+      <div class="value" id="statWorst">-</div>
+    </div>
+    <div class="stat">
+      <div class="label">Promedio general</div>
+      <div class="value" id="statAvg">-</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">01</span><h2>Ranking por puntaje &mdash; Comercial</h2></div>
+    <div class="chart-card">
+      <svg id="barchartComercial" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend">
+        <span><i class="dot" style="background:var(--rose)"></i>Bajo (&lt; 4)</span>
+        <span><i class="dot" style="background:var(--copper)"></i>Medio (4 - 7)</span>
+        <span><i class="dot" style="background:var(--sello)"></i>Alto (&ge; 7) &mdash; sello aprobado</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">02</span><h2>Ranking por puntaje &mdash; Artesanal</h2></div>
+    <div class="chart-card">
+      <svg id="barchartArtesanal" viewBox="0 0 900 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="legend">
+        <span><i class="dot" style="background:var(--rose)"></i>Bajo (&lt; 4)</span>
+        <span><i class="dot" style="background:var(--copper)"></i>Medio (4 - 7)</span>
+        <span><i class="dot" style="background:var(--sello)"></i>Alto (&ge; 7) &mdash; sello aprobado</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">03</span><h2>Planilla completa</h2></div>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Alfajor</th>
+            <th>Tipo</th>
+            <th>Puntaje</th>
+            <th>Descripción comercial</th>
+            <th>Notas de catadores</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">04</span><h2>Alfajores en lista de espera</h2></div>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Alfajor</th>
+            <th>Fecha de vencimiento</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="esperaBody"></tbody>
+      </table>
+      <div class="espera-empty" id="esperaEmpty" style="display:none">No hay alfajores en lista de espera.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">05</span><h2>Galería fotográfica</h2></div>
+    <div class="gallery-card">
+      <div class="gallery-toolbar">
+        <div class="gallery-status">
+          <span class="live-dot" id="galleryDot"></span>
+          <span id="galleryStatusText">conectando con GitHub&hellip;</span>
+        </div>
+        <button class="gallery-refresh" id="galleryRefreshBtn" type="button">Recargar galería</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <footer> <strong>Slogans Famosos de Alfajores</strong> <br> <strong>Rasta</strong>: «Abrir en caso de bajón» <br> <strong>Havanna:</strong> «Se va hoy, se va mañana, no olvide llevar alfajores Havanna» <br><strong>Blanco y Negro (Bagley):</strong> «El sabor del aire libre» <br> <strong>Guaymallén:</strong> «El alfajor de la familia». <br><strong>Jorgito:</strong> «El nombre del alfajor». <br><strong>Fantoche:</strong> «El verdadero alfajor triple». Apuntando a su mayor orgullo: haber sido los creadores y registradores de la palabra "Triple" en el mundo alfajorero.<br><strong>Grandote:</strong> «Doble sabor, doble satisfacción» (y su variante clásica: «Grandote, el alfajor de doble sabor»). Un hito de los años 90.<br><strong>Cachafaz:</strong> «El alfajor» (los busca la Nasa...)<br><strong>Capitán del Espacio:</strong> «Primeros en la conquista del buen gusto»<br><strong>Suchard:</strong> «El placer de la tentación»<br><strong>Terrabusi:</strong> «Dígale sí a Terrabusi»<br><strong>Milka:</strong> «La magia de la ternura»<br><strong>Bon o Bon:</strong> «Un toque de dulzura»<br/> <a href="https://www5.hcdn.gob.ar/archivos/cap.html">Juego</a><br><strong>High Score:</strong><br>1- ezabalag 410<br>2-  mgomeza 378<br>3- vtourrilhes 197 </footer>
+  
+  
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Anterior">&#8249;</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Siguiente">&#8250;</button>
+    <p class="lightbox-cap" id="lightboxCap"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  // ---------------- Data ----------------
+  // Podés agregar más alfajores en cualquier momento desde la consola o desde
+  // otro script llamando a window.Alfajores.add({...}). Ver ejemplo al final.
+  // El campo "tipo" indica si el alfajor es "Comercial" o "Artesanal".
+  // Se usa para separar el ranking y las estadísticas por categoría.
+  var data = [
+      { alfajor: "Zendem Salted Caramel", tipo: "Comercial", puntaje: 2.5, descripcion: "Corazón de caramelo salado ", notas: "tiene un poco de gusto a plastilina (vtourrilhes)" },
+      { alfajor: "Minué", tipo: "Comercial", puntaje: 6, descripcion: "Chocolate recheado com dolce de lette ", notas: "Pensé iba a ser berretón como el Capitán, esta bien, se nota el gusto químico eso si (elosada)" },
+      { alfajor: "Havanna Playa Grande", tipo: "Comercial", puntaje: 9.5, descripcion: "La Felicidad de Playa grande ", notas: "si el contraste entre playa Bristol y Playa Grande en el veraneo marplatense es un tema de categoría, con los alfajores se ve fielmente reflejado. Playa Grande se siente mas exclusivo y Bristol mas popular. La sal no es para paladares simples, el dulce de leche es perfecto y la cobertura es volver a ese lugar feliz del Havanna tradicional. Sin mas preámbulos, mi puntaje lo ubica en la cima del ranking hasta el momento, con un 9,5 (mgomeza)" },
+     
+     { alfajor: "Vauquita Cappuccino", tipo: "Comercial", puntaje: 7.5, descripcion: "Con Super Dulce de Leche ", notas: "cuando tenía 8 años viajé a la costa con mi papá y mi abuelo en un viaje de machos. Hasta ese entonces solo tomaba té. Paramos en la ruta en una YPF y me pedí por primera vez un café capuccino. El primer bocado de este alfajor me hizo viajar como el crítico de Rattatuille a ese instante. No hace falta aclarar mas. Le pongo un 8 y le subo medio punto por el componente emocional (mgomeza)" },
+     { alfajor: "Zendem Tiramisu", tipo: "Comercial", puntaje: 5.5, descripcion: "Tiramisu y Dulce de Leche ", notas: "No es feo, pero el relleno de café no me termina de cerrar en un alfajor (ezabalag)" },
+     { alfajor: "Rasta Trico", tipo: "Comercial", puntaje: 7.5, descripcion: "Merengue y Dulce de leche ", notas: "esta bueno, dulce de leche con merengue, pero mata un diabético, es para tomar con café sin azucar (elosada)" },
+     { alfajor: "Barrigon Maní", tipo: "Comercial", puntaje: 9, descripcion: "Aljafor con EXTRA dulce de leche ", notas: "Top barrigon, Maní con dulce de leche (elosada)" },
+     { alfajor: "Barrigon Crema", tipo: "Comercial", puntaje: 7, descripcion: "Aljafor con EXTRA dulce de leche ", notas: "muy buenos, me sorprendieron (labad)" }, 
+      { alfajor: "Barrigon Frutilla", tipo: "Comercial", puntaje: 7, descripcion: "Aljafor con EXTRA dulce de leche ", notas: "muy buenos, me sorprendieron (labad)" },
+      { alfajor: "Barrigon Mega Brownie", tipo: "Comercial", puntaje: 6.5, descripcion: "Aljafor con EXTRA dulce de leche ", notas: "no me agrada mucho que es medio arenoso (labad)" },
+      { alfajor: "Barrigon Mega Negro", tipo: "Comercial", puntaje: 8, descripcion: "Aljafor con EXTRA dulce de leche ", notas: "buena capa de dulce de leche (dlopezc)" },
+     { alfajor: "AlFernet", tipo: "Comercial", puntaje: 5, descripcion: "no se", notas: "el distintivo es el fernet, pero no se encuentra. Feo no es, pero no hay fernet. (mgomeza)" },
+     { alfajor: "Capitan del Espacio", tipo: "Comercial", puntaje: 7, descripcion: "El Alfajor de Emilio", notas: "Capitan se garcha a Jorgito! (vtourrilhes) El dulde de leche del blanco tiene gusto a trapo (pagarcia) " },
+     { alfajor: "Lucciano Pistacchio", tipo: "Artesanal", puntaje: 9.5, descripcion: "Il Maestro del Pistacchio llegó para quedarse.", notas: "indiscutidamente el mejor hasta ahora, 9,5 puntos (no le doy mas porque el 10 tiene que ser de chocolate negro por tradición)(mgomeza) " },
+    { alfajor: "Havanna Bristol Blanco", tipo: "Comercial", puntaje: 8.5, descripcion: "La felicidad de Playa Bristol", notas: "es muy rico el relleno, esa combinación. La galletita acompaña pero no suma, pero la cobertura le da una textura mantecosa, aspecto que se evita con la cobertura de chocolate negro. (pagarcia) " },
+    { alfajor: "Giga", tipo: "Comercial", puntaje: 6, descripcion: "By Spreen", notas: "alfajor que en un concurso para adultos no compite, seguro es un gran alfajor infantil para el recreo. Mi veredicto: no puntúa (mgomeza)" },
+    { alfajor: "Elixir Fantoche", tipo: "Comercial", puntaje: 5, descripcion: "alfajor con super dulce de leche", notas: "medio seco (dlopezc)" },
+    { alfajor: "Red Velvet Fantoche", tipo: "Comercial", puntaje: 5, descripcion: "Caprichosamente irresistible", notas: "el relleno no es dulce de leche, glaseado pobre y la galletita arenosa, sin gracia, además me recuerda a la merienda de la colonia donde nos daban alfajores de cartón. (pagarcia)" },
+    { alfajor: "Bnb", tipo: "Comercial", puntaje: 7, descripcion: "benevia natural, brand", notas: "turroncito navideño (svilches)" },
+    { alfajor: "Vauquita Sublime", tipo: "Comercial", puntaje: 8.5, descripcion: "Tapas de Vauquita", notas: "las tapas son de vauquita y el dulce de leche bien duro (elosada)" },
+    { alfajor: "Guolis Extra Blend", tipo: "Comercial", puntaje: 6, descripcion: "Dulce de leche, galletita con cacao, frambuesa y chocolate amargo", notas: "gusto a benadryl (medicamento para lo tos con lo que los padres drogaban a los bebes y niños de la gen x) (Richard)" },
+    { alfajor: "Cachafaz 72% Cacao", tipo: "Comercial", puntaje: 8.5, descripcion: "Dos galletitas de masa de almendras rellenas de dulce de leche cubiertas con chocolate amargo. Sin aceite hidrogenado.", notas: "oppaaaa (labad)" },
+    { alfajor: "Mr. Bob", tipo: "Comercial", puntaje: 5, descripcion: "Mega bajonero primer alfajor en ser mitad suave, mitad bajonero con doble baño", notas: "suma muchos puntos por el dulce de leche y el intento de hacer algo nuevo con dos capas diferentes, pero no esta logrado. La capa gruesa es demasiado dura y galletitosa de esas galletitas baratas tipo horoscopo (mgomeza)" },
+    { alfajor: "Trassens", tipo: "Comercial", puntaje: 5.5, descripcion: "Es irresistible, elegí disfrutarlo", notas: "meh (todos)" },
+    { alfajor: "Orense Black", tipo: "Comercial", puntaje: 5, descripcion: "Negro+Negro", notas: "mas comunardo imposible (Richard)" },
+    { alfajor: "Orense Clasico", tipo: "Comercial", puntaje: 4, descripcion: "Alfajor Premium con cobertura de chocolate blanco con extra dulce de leche", notas: "literalmente hoy en día cualquier verdulero saca un alfajor (elosada)" },
+    { alfajor: "Gula Extrema", tipo: "Comercial", puntaje: 7, descripcion: "Galletita bañada en chocolate blanco con dulce de leche, mousse de chocolate con cobretura de chocolate semiamargo", notas: "Gula es muy rico, pero no es un alfajor (pagarcia)" },
+    { alfajor: "Fantoche Super triple", tipo: "Comercial", puntaje: 2, descripcion: "Relleno sabor dulce de leche sabor reposteria", notas: "no hay comentarios, solo silencio" },
+    { alfajor: "Recoleta", tipo: "Comercial", puntaje: 5, descripcion: "El de siempre, la perfección del alfajor", notas: "packaging y nombre demasiado pretencioso para un producto rico pero común, de kiosco (mgomeza)" },
+    { alfajor: "Maradona", tipo: "Comercial", puntaje: 5, descripcion: "Alfajor con relleno de dulce de leche cubierto con baño de reposteria", notas: "pero es el dieeeeeeeeeego (mgomeza)" }
+  ];
+
+  var els = {
+    tableBody: document.getElementById('tableBody'),
+    chartComercial: document.getElementById('barchartComercial'),
+    chartArtesanal: document.getElementById('barchartArtesanal'),
+    statCount: document.getElementById('statCount'),
+    statBest: document.getElementById('statBest'),
+    statBestArtesanal: document.getElementById('statBestArtesanal'),
+    statWorst: document.getElementById('statWorst'),
+    statAvg: document.getElementById('statAvg'),
+    stampAvg: document.getElementById('stampAvg')
+  };
+
+  // ================================================================
+  //  GALERÍA — CONFIGURACIÓN DE GITHUB
+  //  Completá estos 4 datos con tu repositorio. A diferencia de antes, acá
+  //  NO se lista la carpeta automáticamente (eso gastaba la cuota de la API
+  //  de GitHub) — vos agregás el nombre de cada imagen a mano en
+  //  GALLERY_FILES, más abajo, cada vez que subas una foto al repo.
+  // ================================================================
+  var GITHUB_CONFIG = {
+    user:   "user0732",  // ej: "jperez"
+    repo:   "imagenes",  // ej: "alfajores-fotos"
+    path:   "alf",       // carpeta dentro del repo, ej: "fotos" o "" para la raíz
+    branch: "main",      // rama, normalmente "main" (a veces "master")
+    token:  ""           // opcional, no hace falta para este modo manual
+  };
+
+  // Lista manual de imágenes: agregá acá el NOMBRE DE ARCHIVO exacto tal cual
+  // está subido al repo, cada vez que subas uno nuevo. El orden acá define
+  // el orden en que se muestran (podés reordenar la lista libremente).
+  var GALLERY_FILES = [
+    "Vauquita cappuchino.jpg",
+    "Zendem Tiramisu.jpg",
+    "Rasta Trico.jpg",
+    "barrigones.jpg",
+    "Barrigon Mega Negro y Brownie.jpg",
+    "Zendem Salted Caramel.jpg",
+    "Minué.jpg",
+    "Havanna Bristol Negro.jpg",
+    "Capitan del Espacio y AlFernet.jpg",
+    "Lucciano Pistacchio.jpg",
+    "Havanna Bristol.jpg",
+    "Giga.jpeg",
+    "Elixir y Red Velvet.jpg",
+    "Elixir y Red Velvet 2.jpg",
+    "Vauquita Sublime y Bnb.jpg",
+    "Guolis Extra Blend.jpg",
+    "Mr Bob.jpg",
+    "Orense Black 60gr.jpg",
+    "Maradona.png",
+    "Recoleta.png",
+    "Super Triple Fantoche.png",
+    "Alfajor Clasico Blanco Orense 60 gr.png",
+    "Trassens.png",
+    "Cachafaz 72% Cacao.png",
+  ];
+  // ================================================================
+
+  function colorFor(score){
+    if(score >= 7) return getCss('--sello');
+    if(score >= 4) return getCss('--copper');
+    return getCss('--rose');
+  }
+  function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  // ---------------- Table render ----------------
+  function renderTable(){
+    var rows = data.slice().sort(function(a,b){ return b.puntaje - a.puntaje; });
+    els.tableBody.innerHTML = rows.map(function(d){
+      var tipoClass = d.tipo === 'Artesanal' ? 'artesanal' : 'comercial';
+      return '<tr>' +
+        '<td class="col-alfajor">' + escapeHtml(d.alfajor) + '</td>' +
+        '<td class="col-tipo"><span class="tipo-tag ' + tipoClass + '">' + escapeHtml(d.tipo || 'Comercial') + '</span></td>' +
+        '<td class="col-puntaje"><span class="sello" style="background:' + colorFor(d.puntaje) + '">' + formatScore(d.puntaje) + '</span></td>' +
+        '<td class="col-desc">' + escapeHtml(d.descripcion) + '</td>' +
+        '<td class="col-notas">' + escapeHtml(d.notas) + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  function formatScore(n){
+    return (Math.round(n*10)/10).toString().replace('.', ',');
+  }
+
+  // ---------------- Stats render ----------------
+  function renderStats(){
+    if(data.length === 0){
+      els.statCount.textContent = '0';
+      els.statBest.textContent = '-';
+      els.statBestArtesanal.textContent = '-';
+      els.statWorst.textContent = '-';
+      els.statAvg.textContent = '-';
+      els.stampAvg.textContent = '-';
+      return;
+    }
+    var scores = data.map(function(d){ return d.puntaje; });
+    var worst = data.reduce(function(a,b){ return b.puntaje < a.puntaje ? b : a; });
+    var avg = scores.reduce(function(a,b){ return a+b; },0) / scores.length;
+
+    var comerciales = data.filter(function(d){ return d.tipo !== 'Artesanal'; });
+    var artesanales = data.filter(function(d){ return d.tipo === 'Artesanal'; });
+    var bestComercial = comerciales.length
+      ? comerciales.reduce(function(a,b){ return b.puntaje > a.puntaje ? b : a; })
+      : null;
+    var bestArtesanal = artesanales.length
+      ? artesanales.reduce(function(a,b){ return b.puntaje > a.puntaje ? b : a; })
+      : null;
+
+    els.statCount.textContent = data.length;
+    els.statBest.innerHTML = bestComercial
+      ? formatScore(bestComercial.puntaje) + '<br><small>' + escapeHtml(bestComercial.alfajor) + '</small>'
+      : '-';
+    els.statBestArtesanal.innerHTML = bestArtesanal
+      ? formatScore(bestArtesanal.puntaje) + '<br><small>' + escapeHtml(bestArtesanal.alfajor) + '</small>'
+      : '-';
+    els.statWorst.innerHTML = formatScore(worst.puntaje) + '<br><small>' + escapeHtml(worst.alfajor) + '</small>';
+    els.statAvg.textContent = formatScore(avg);
+    els.stampAvg.textContent = formatScore(avg);
+  }
+
+  // ---------------- Chart render (SVG horizontal bars, sin librerías) ----------------
+  var NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs){
+    var el = document.createElementNS(NS, tag);
+    for(var k in attrs){ el.setAttribute(k, attrs[k]); }
+    return el;
+  }
+
+  function renderChart(svg, rowsIn){
+    svg.innerHTML = '';
+
+    var rows = rowsIn.slice().sort(function(a,b){ return b.puntaje - a.puntaje; });
+    var n = rows.length;
+    var W = 900, marginL = 190, marginR = 60, marginT = 10, marginB = 10;
+    var rowH = n > 0 ? Math.max(34, Math.min(52, 300/n)) : 34;
+    var H = n * rowH + marginT + marginB;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + Math.max(H, 60));
+
+    var trackW = W - marginL - marginR;
+    var maxScore = 10;
+
+    // eje vertical
+    svg.appendChild(svgEl('line', { class:'axis-line', x1:marginL, y1:marginT, x2:marginL, y2:H-marginB }));
+
+    // marcas de fondo cada 2 puntos
+    for(var g=0; g<=maxScore; g+=2){
+      var gx = marginL + (g/maxScore)*trackW;
+      svg.appendChild(svgEl('line', { class:'axis-line', x1:gx, y1:marginT, x2:gx, y2:H-marginB }));
+      var lbl = svgEl('text', { class:'axis-label', x:gx, y:H-marginB+14, 'text-anchor':'middle' });
+      lbl.textContent = g;
+      svg.appendChild(lbl);
+    }
+
+    if(n === 0){
+      var empty = svgEl('text', { x: W/2, y: 40, 'text-anchor':'middle', class:'axis-label' });
+      empty.textContent = 'Sin datos todavía.';
+      svg.appendChild(empty);
+      return;
+    }
+
+    rows.forEach(function(d, i){
+      var y = marginT + i*rowH;
+      var barH = rowH * 0.52;
+      var barY = y + (rowH - barH)/2;
+      var w = (d.puntaje/maxScore) * trackW;
+
+      // track de fondo
+      svg.appendChild(svgEl('rect', {
+        class:'bar-track', x:marginL, y:barY, width:trackW, height:barH, rx:4
+      }));
+
+      // barra de valor
+      var bar = svgEl('rect', {
+        x:marginL, y:barY, width:Math.max(w,2), height:barH, rx:4, fill:colorFor(d.puntaje)
+      });
+      svg.appendChild(bar);
+
+      // nombre a la izquierda
+      var name = svgEl('text', {
+        class:'bar-name', x:marginL - 12, y:y + rowH/2 + 4, 'text-anchor':'end'
+      });
+      name.textContent = d.alfajor;
+      svg.appendChild(name);
+
+      // puntaje al final de la barra
+      var score = svgEl('text', {
+        class:'bar-score', x: marginL + Math.max(w,2) + 8, y: y + rowH/2 + 4, fill: 'var(--ink)'
+      });
+      score.textContent = formatScore(d.puntaje);
+      svg.appendChild(score);
+    });
+  }
+
+  function renderAll(){
+    renderTable();
+    renderStats();
+    renderChart(els.chartComercial, data.filter(function(d){ return d.tipo !== 'Artesanal'; }));
+    renderChart(els.chartArtesanal, data.filter(function(d){ return d.tipo === 'Artesanal'; }));
+    renderEspera();
+  }
+
+  // ---------------- Galería de GitHub (modo manual) ----------------
+  var galleryEls = {
+    grid: document.getElementById('galleryGrid'),
+    dot: document.getElementById('galleryDot'),
+    statusText: document.getElementById('galleryStatusText'),
+    refreshBtn: document.getElementById('galleryRefreshBtn')
+  };
+
+  var galleryState = { lastFiles: null };
+
+  function titleFromFilename(filename){
+    var base = filename.replace(/\.[^/.]+$/, '');
+    base = base.replace(/[_-]+/g, ' ').trim();
+    return base.replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+  }
+
+  function rawUrl(filename){
+    var c = GITHUB_CONFIG;
+    var cleanPath = (c.path || '').replace(/^\/+|\/+$/g, '');
+    var parts = ['https://raw.githubusercontent.com', c.user, c.repo, c.branch || 'main'];
+    if(cleanPath) parts.push(cleanPath);
+    parts.push(encodeURIComponent(filename));
+    return parts.join('/');
+  }
+
+  function setStatus(text, isError){
+    galleryEls.statusText.textContent = text;
+    galleryEls.dot.classList.toggle('err', !!isError);
+  }
+
+  function renderGallery(files){
+    if(!files || files.length === 0){
+      galleryEls.grid.innerHTML = '<p class="gallery-empty">Todavía no agregaste ninguna imagen a GALLERY_FILES. Subí la foto al repo y sumá su nombre de archivo en el código.</p>';
+      return;
+    }
+    galleryEls.grid.innerHTML = files.map(function(f, i){
+      return '<figure class="gallery-item">' +
+        '<div class="img-wrap"><img src="' + f.url + '" alt="' + escapeHtml(f.title) + '" loading="lazy" data-index="' + i + '"></div>' +
+        '<figcaption class="cap">' + escapeHtml(f.title) + '</figcaption>' +
+        '</figure>';
+    }).join('');
+
+    Array.prototype.forEach.call(galleryEls.grid.querySelectorAll('img'), function(img){
+      img.addEventListener('click', function(){
+        openLightbox(parseInt(img.getAttribute('data-index'), 10));
+      });
+    });
+  }
+
+  function loadGallery(){
+    var c = GITHUB_CONFIG;
+    if(!c.user || c.user === 'TU_USUARIO' || !c.repo || c.repo === 'TU_REPOSITORIO'){
+      setStatus('falta configurar GITHUB_CONFIG (ver abajo)', true);
+      galleryEls.grid.innerHTML = '<p class="gallery-error">Todavía no configuraste el repositorio de GitHub. Completá GITHUB_CONFIG al principio del &lt;script&gt;.</p>';
+      return;
+    }
+    var files = GALLERY_FILES.map(function(filename){
+      return { title: titleFromFilename(filename), url: rawUrl(filename), name: filename };
+    });
+    galleryState.lastFiles = files;
+    renderGallery(files);
+    setStatus(files.length + ' foto' + (files.length === 1 ? '' : 's'));
+  }
+
+  function nowLabel(){
+    var d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0') + ':' + d.getSeconds().toString().padStart(2,'0');
+  }
+
+  function initGallery(){
+    galleryEls.refreshBtn.addEventListener('click', function(){ loadGallery(); });
+    loadGallery();
+  }
+
+  // API pública para agregar imágenes por código sin tocar GALLERY_FILES a mano.
+  // Ejemplo desde la consola: Galeria.add("nueva-foto.jpg")
+  window.Galeria = {
+    add: function(filename){
+      if(!filename) return;
+      if(GALLERY_FILES.indexOf(filename) === -1){
+        GALLERY_FILES.push(filename);
+      }
+      loadGallery();
+    },
+    addMany: function(filenames){
+      (filenames || []).forEach(function(f){
+        if(GALLERY_FILES.indexOf(f) === -1) GALLERY_FILES.push(f);
+      });
+      loadGallery();
+    },
+    remove: function(filename){
+      var idx = GALLERY_FILES.indexOf(filename);
+      if(idx > -1){ GALLERY_FILES.splice(idx,1); loadGallery(); }
+    },
+    list: function(){ return GALLERY_FILES.slice(); }
+  };
+
+
+  // ---------------- Lightbox (modal de imagen expandida) ----------------
+  var lightboxEls = {
+    root: document.getElementById('lightbox'),
+    img: document.getElementById('lightboxImg'),
+    cap: document.getElementById('lightboxCap'),
+    close: document.getElementById('lightboxClose'),
+    prev: document.getElementById('lightboxPrev'),
+    next: document.getElementById('lightboxNext')
+  };
+  var lightboxIndex = -1;
+
+  function openLightbox(index){
+    var files = galleryState.lastFiles;
+    if(!files || !files.length) return;
+    lightboxIndex = ((index % files.length) + files.length) % files.length;
+    var f = files[lightboxIndex];
+    lightboxEls.img.src = f.url;
+    lightboxEls.img.alt = f.title;
+    lightboxEls.cap.textContent = f.title;
+    lightboxEls.root.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(){
+    lightboxEls.root.classList.remove('open');
+    lightboxEls.img.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function stepLightbox(delta){
+    if(lightboxIndex < 0) return;
+    openLightbox(lightboxIndex + delta);
+  }
+
+  lightboxEls.close.addEventListener('click', closeLightbox);
+  lightboxEls.prev.addEventListener('click', function(){ stepLightbox(-1); });
+  lightboxEls.next.addEventListener('click', function(){ stepLightbox(1); });
+  lightboxEls.root.addEventListener('click', function(e){
+    if(e.target === lightboxEls.root) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if(!lightboxEls.root.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') stepLightbox(-1);
+    if(e.key === 'ArrowRight') stepLightbox(1);
+  });
+
+  // ---------------- Lista de espera (con fecha de vencimiento) ----------------
+  // Cada item: { alfajor: "Nombre", vencimiento: "dd/mm/aa" | "dd/mm/aaaa" | "aaaa-mm-dd" }
+  var espera = [];
+
+  // Devuelve un Date local (medianoche) o null si la fecha no es válida.
+  function parseFecha(s){
+    if(s instanceof Date) return isNaN(s) ? null : new Date(s.getFullYear(), s.getMonth(), s.getDate());
+    s = (s || '').toString().trim();
+    var m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2}|\d{4})$/);
+    var d, mo, y;
+    if(m){ d = +m[1]; mo = +m[2]; y = +m[3]; if(m[3].length === 2) y += 2000; }
+    else {
+      m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if(!m) return null;
+      y = +m[1]; mo = +m[2]; d = +m[3];
+    }
+    var dt = new Date(y, mo - 1, d);
+    return (dt.getFullYear() === y && dt.getMonth() === mo - 1 && dt.getDate() === d) ? dt : null;
+  }
+
+  function formatFecha(dt){
+    return String(dt.getDate()).padStart(2,'0') + '/' + String(dt.getMonth() + 1).padStart(2,'0') + '/' + dt.getFullYear();
+  }
+
+  function estadoVenc(dt){
+    var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+    var dias = Math.round((dt - hoy) / 86400000);
+    if(dias < 0)   return { cls: 'vencido', txt: 'Vencido hace ' + (-dias) + (dias === -1 ? ' día' : ' días') };
+    if(dias === 0) return { cls: 'urgente', txt: 'Vence hoy' };
+    if(dias <= 7)  return { cls: 'urgente', txt: 'Vence en ' + dias + (dias === 1 ? ' día' : ' días') };
+    if(dias <= 30) return { cls: 'pronto',  txt: 'Vence en ' + dias + ' días' };
+    return { cls: '', txt: 'Vence en ' + dias + ' días' };
+  }
+
+  function renderEspera(){
+    var body = document.getElementById('esperaBody');
+    var empty = document.getElementById('esperaEmpty');
+    if(!body) return;
+    // Orden: vencimiento más próximo primero.
+    var ordenada = espera.slice().sort(function(a, b){
+      return (a.fecha - b.fecha) || a.alfajor.localeCompare(b.alfajor, 'es');
+    });
+    body.innerHTML = ordenada.map(function(e){
+      var st = estadoVenc(e.fecha);
+      return '<tr>' +
+        '<td class="col-alfajor">' + escapeHtml(e.alfajor) + '</td>' +
+        '<td class="col-venc">' + formatFecha(e.fecha) + '</td>' +
+        '<td class="col-quedan"><span class="venc-tag ' + st.cls + '">' + st.txt + '</span></td>' +
+      '</tr>';
+    }).join('');
+    if(empty) empty.style.display = ordenada.length ? 'none' : 'block';
+  }
+
+  // API pública. Ejemplo desde la consola:
+  //   Espera.add({ alfajor: "Manjar Junin Ron", vencimiento: "10/10/26" });
+  window.Espera = {
+    add: function(item){
+      var f = item && parseFecha(item.vencimiento);
+      if(!item || !item.alfajor || !f){
+        console.error('Espera.add: se requiere { alfajor, vencimiento } con fecha válida (dd/mm/aa)');
+        return;
+      }
+      espera.push({ alfajor: item.alfajor, fecha: f });
+      renderEspera();
+    },
+    addMany: function(items){
+      (items || []).forEach(function(item){ window.Espera.add(item); });
+    },
+    remove: function(alfajorName){
+      var idx = espera.findIndex(function(e){ return e.alfajor === alfajorName; });
+      if(idx > -1){ espera.splice(idx, 1); renderEspera(); }
+    },
+    getData: function(){
+      return espera.map(function(e){ return { alfajor: e.alfajor, vencimiento: formatFecha(e.fecha) }; });
+    }
+  };
+
+  // Lista inicial
+  window.Espera.addMany([
+    { alfajor: "Gualmayen rubi", vencimiento: "15/11/26"},
+    { alfajor: "Arroyito Molotov", vencimiento: "12/11/26"},
+    { alfajor: "Vauquita Capuccino", vencimiento: "01/11/26"},
+    { alfajor: "Dubai Blue Label", vencimiento: "22/04/27"},
+    { alfajor: "Aguila Mini Torta Black", vencimiento: "08/11/26"},
+    { alfajor: "Mantecol", vencimiento: "08/05/27"},
+    
+  ]);
+
+  // ---------------- API pública para editar por código ----------------
+  // Ejemplo de uso desde la consola del navegador:
+  //   Alfajores.add({ alfajor: "Havanna Mixto", tipo: "Comercial", puntaje: 6.5,
+  //     descripcion: "Alfajor de maicena bañado en chocolate",
+  //     notas: "clásico de la costa (jperez)" });
+  // El campo "tipo" acepta "Comercial" o "Artesanal" (si se omite, se toma como "Comercial").
+  window.Alfajores = {
+    data: data,
+    add: function(item){
+      if(!item || !item.alfajor || typeof item.puntaje !== 'number'){
+        console.error('Alfajores.add: se requiere { alfajor, tipo, puntaje, descripcion, notas }');
+        return;
+      }
+      var tipo = (item.tipo || '').toString().trim().toLowerCase() === 'artesanal' ? 'Artesanal' : 'Comercial';
+      data.push({
+        alfajor: item.alfajor,
+        tipo: tipo,
+        puntaje: item.puntaje,
+        descripcion: item.descripcion || '',
+        notas: item.notas || ''
+      });
+      renderAll();
+    },
+    addMany: function(items){
+      (items || []).forEach(function(item){ window.Alfajores.add(item); });
+    },
+    remove: function(alfajorName){
+      var idx = data.findIndex(function(d){ return d.alfajor === alfajorName; });
+      if(idx > -1){ data.splice(idx,1); renderAll(); }
+    },
+    getData: function(){ return data.slice(); }
+  };
+
+  renderAll();
+  initGallery();
+})();
+</script>
+</body>
+</html>
